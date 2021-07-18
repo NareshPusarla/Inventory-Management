@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonRice {
-
+	
 	public static void main(String[] args) {
 	
 		  JSONObject rice = new JSONObject(); 
@@ -33,23 +33,14 @@ public class JsonRice {
 		  wheat.put("weight", "70kg"); 
 		  wheat.put("price", "70");
 		  
-		  JSONArray inventryArray = new JSONArray(); 
-		  inventryArray.add(rice);
-		  inventryArray.add(pulse); 
-		  inventryArray.add(wheat);
+		  InventeryManager manager = new InventeryManager(); 
+		  manager.add(rice);
+		  manager.add(pulse); 
+		  manager.add(wheat);
 		  
-		  File file = new File("C:\\Users\\Naresh\\Documents\\inventery.json"); 
-		  try {
-		  file.createNewFile(); 
-		  FileWriter fileWriter = new FileWriter(file);
-		  fileWriter.write(inventryArray.toString()); 
-		  fileWriter.flush();
-		  fileWriter.close(); 
-		  } catch (IOException e) { 
-			  e.printStackTrace(); 
-			  }
-		  System.out.println(inventryArray);
-		 
+		  manager.write();
+		  manager.read();
+		  manager.print();
 	}
 
 }
